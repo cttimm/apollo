@@ -9,19 +9,17 @@ import string
 
 random.seed(0)
 
-# Get random in the correct format
 def rand(min, max):
     return (max-min)*random.random() + min
 
-# Make a matrix
 def makeMatrix(I, J, fill=0.0):
     pass
 
-# sigmoid
+def sigmoid(x):
+    pass
 
-
-# derivative of sigmoid, in terms of output
-
+def dsigmoid(y):
+    pass
 
 class NN:
     def __init__(self, n_input, n_hidden, n_output):
