@@ -10,11 +10,22 @@ with open("results.json", "r") as file:
 
 apollo.train(pattern)
 print("Results")
-#.96 certainty of win
-apollo.test([[[.340 ,.340,.00]]])
 
 #.08 certainty of win
-apollo.test([[[.3,.300,.00]]])
+apollo.test([[[.3,.3,.00]]])
 
+apollo.test([[[.31,.31,.00]]])
+
+apollo.test([[[.315 ,.315,.00]]])
+
+apollo.test([[[.315 ,.315,.02]]])
+
+apollo.test([[[.315 ,.315,.04]]])
+
+apollo.test([[[.32,.32,.00]]])
+
+apollo.test([[[.33 ,.33,.00]]])
+
+apollo.test([[[.34 ,.34,.00]]])
 # Get weights
 apollo.weights()
