@@ -12,14 +12,20 @@ random.seed(0)
 def rand(min, max):
     return (max-min)*random.random() + min
 
-def makeMatrix(I, J, fill=0.0):
-    pass
+# Creates a matrix with append
+def initMatrix(I, J, fill=0.0):
+    matrix = []
+    for i in range(I):
+        matrix.append([0.0]*J)
+    return matrix
 
-def sigmoid(x):
-    pass
+#Sigmoid function for activation (tanh)
+def activationFunction(x):
+    return math.tanh(x)
 
-def dsigmoid(y):
-    pass
+#Dx of Sigmoid activation function
+def dactivationFunction(y):
+    return 1.0 - y**2
 
 class NN:
     def __init__(self, n_input, n_hidden, n_output):
@@ -33,8 +39,8 @@ class NN:
         self.a_output = [1.0]*self.n_output
 
         # Weights
-        self.w_input = makeMatrix(self.n_input, self.n_hidden)
-        self.w_output = makeMatrix(self.n_hidden, self.n_output)
+        self.w_input = initMatrix(self.n_input, self.n_hidden)
+        self.w_output = initMatrix(self.n_hidden, self.n_output)
 
         # Set the weight matrices to random values
         for i in range(self.n_input):
@@ -45,19 +51,51 @@ class NN:
                 self.w_output[j][k] = rand(-2.0, 2.0)
 
         # Momentum; change in weights
-        self.c_input = makeMatrix(self.n_input, self.n_hidden)
-        self.c_output = makeMatrix(self.n_hidden, self.n_output)
+        self.c_input = initMatrix(self.n_input, self.n_hidden)
+        self.c_output = initMatrix(self.n_hidden, self.n_output)
     
     # Activations for input, hidden, output
     def update(self, inputs):
-        pass
+        if len(inputs) != self.n_input - 1:
+            raise ValueError("Wrong number of inputs")
+        
+        # Input activations
+        for i in range(self.n_input-1):
+            self.a_input = inputs[i]
+
+        # Hidden activations
+        for j in range(self.n_hidden):
+            sum = 0.0
+            for i in range(self.n_input):
+                sum = sum + self.a_input[i] * self.w_input[i][j]
+            self.a_hidden[j] = sigmoid(sum)
+                
+         # Output activations
+         for k in range(self.n_output):
+            sum = 0.0
+            for j in range(self.n_hidden):
+                sum = sum + self.a_hidden[j] * self.w_output[i][j]
+            self.a_output[k] = sigmoid(sum) 
+        return self.a_output[:]
 
     # Calculate error (output, hidden), update input and output weights
+    # N = learning factor, M = momentum factor
     def backProp(self, targets, N, M):
-        pass
+        
+        # Calculate Output Error
+
+        # Calculate Hidden Error
+
+        # Update Output Weights
+
+        # Update Input Weights
+
+        # Calculate Error
+
+        return error
     
     # Test the class with a pattern
-    def test(self, patterns):
+    def test(self):
         pass
 
     # Print the weights

@@ -81,7 +81,7 @@ class NN:
 
         return self.ao[:]
 
-
+    # N = Learning Rate, M = Momentum Factor
     def backPropagate(self, targets, N, M):
         if len(targets) != self.no:
             raise ValueError('wrong number of target values')
