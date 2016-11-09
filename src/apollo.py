@@ -128,7 +128,7 @@ class initialize:
             print(self.w_input[i])
 
     # Train the NN, N = learning rate, M = momentum factor
-    def train(self, patterns, iterations=1000, N=0.5, M=0.1):
+    def train(self, patterns, iterations=10000, N=0.4, M=0.3):
         for i in range(iterations):
             error = 0.0
             for p in patterns:
@@ -136,6 +136,4 @@ class initialize:
                 targets = p[1]
                 self.update(inputs)
                 error = error + self.backProp(targets, N, M)
-            if i % 100 == 0:
-                print("Error %-.5f" % error)
     
