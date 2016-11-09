@@ -1,6 +1,6 @@
 import apollo
 
-test = apollo.NN(3, 2, 1)
+apollo = apollo.initialize()
 
 # Proof of concept
 
@@ -9,13 +9,17 @@ test = apollo.NN(3, 2, 1)
 pattern = [
     [[.7,.700,.2],[1]],
     [[.300,.300,.01],[0]],
-    [[.540,.540,.05],[1]]
+    [[.540,.540,.05],[1]],
+    [[.600,.560,.5],[1]]
 ]
 
-test.train(pattern)
+apollo.train(pattern)
 
 #.96 certainty of win
-test.test([[[.500,.500,.11]]])
+apollo.test([[[.500,.500,.11]]])
 
 #.08 certainty of win
-test.test([[[.300,.300,.05]]])
+apollo.test([[[.300,.300,.05]]])
+
+# Get weights
+apollo.weights()
