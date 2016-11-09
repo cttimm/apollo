@@ -3,6 +3,8 @@ import apollo
 test = apollo.NN(3, 2, 1)
 
 # Proof of concept
+
+# "Teach" the bpnn some examples
 # [gpm, xpm, kills],[1 = win, 0 = loss]
 pattern = [
     [[.7,.700,.2],[1]],
