@@ -1,7 +1,7 @@
 from bpnn import NN
 import json
 
-class apollo(NN):
+class dota2nn(NN):
     def loadHero(self, heroid):
         """ Loads the existing dataset from a json file, will be indexed with results for individual heros """
         with open("samples.json", "r") as file:

@@ -1,7 +1,7 @@
 # Based off of bpnn by Neil Schemenauer <nas@arctrix.com>
 # Written in Python. See http://www.python.org
 # Placed in the public domain.
-# 
+
 
 import math
 import random
