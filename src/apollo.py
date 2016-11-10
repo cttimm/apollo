@@ -28,7 +28,7 @@ def dxactivationFunction(y):
     return 1.0 - y**2
 
 class initialize:
-    def __init__(self, n_input = 3, n_hidden = 2, n_output = 1):
+    def __init__(self, n_input = 3, n_hidden = 3, n_output = 1):
         self.n_input = n_input + 1
         self.n_hidden = n_hidden
         self.n_output = n_output
@@ -128,7 +128,7 @@ class initialize:
             print(self.w_input[i])
 
     # Train the NN, N = learning rate, M = momentum factor
-    def train(self, patterns, iterations=10000, N=0.4, M=0.3):
+    def train(self, patterns, iterations=1000, N=0.09, M=0.1):
         for i in range(iterations):
             error = 0.0
             for p in patterns:
@@ -136,4 +136,6 @@ class initialize:
                 targets = p[1]
                 self.update(inputs)
                 error = error + self.backProp(targets, N, M)
+            if i % 100 == 0:
+                print("Error %-.5f" % error)
     

@@ -9,10 +9,11 @@ with open("results.json", "r") as file:
 # [gpm, xpm, kills],[1 = win, 0 = loss]
 
 apollo.train(pattern)
+
 print("Results")
 
 #.08 certainty of win
-apollo.test([[[.3,.3,.00]]])
+apollo.test([[[.28,.3,.00]]])
 
 apollo.test([[[.31,.31,.00]]])
 
@@ -26,6 +27,6 @@ apollo.test([[[.32,.32,.00]]])
 
 apollo.test([[[.33 ,.33,.00]]])
 
-apollo.test([[[.34 ,.34,.00]]])
+apollo.test([[[.5 ,.34,.10]]])
 # Get weights
 apollo.weights()

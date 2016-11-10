@@ -3,15 +3,15 @@ import json
 
 key = "44D2B9F7C72B1931CC601FF4086C9014"
 module = dota2api.Initialise(key)
-def getMatches(heroID = 74, n = 100):
+def getMatches(heroID = 1, n = 100):
     """ Returns list of match ids consisting of a specific hero """
 
     # Get a list of matches from the history dictionary
     match_list = []
-    match_dict = json.loads(module.get_match_history(hero_id = 5, matches_requested = 100).json)
+    match_dict = json.loads(module.get_match_history(hero_id = 1, matches_requested = 100).json)
     for i in range(len(match_dict["matches"])):
         id = int(match_dict["matches"][i]["match_id"])
-        if int(match_dict["matches"][i]["lobby_type"]) != 7:
+        if int(match_dict["matches"][i]["lobby_type"]) not in [0,7]:
             continue
         if id not in match_list:
             match_list.append(id)
@@ -24,7 +24,7 @@ def getDetails(matchID):
         details_list = []
         players = match_dict["players"]
         for n in range(len(players)):
-            if players[n]["hero_id"] == 5:
+            if players[n]["hero_id"] == 1:
                 details_list = [
                     players[n].get("gold_per_min")/1000,
                     players[n].get("xp_per_min")/1000,
