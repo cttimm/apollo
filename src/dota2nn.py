@@ -21,10 +21,10 @@ class dota2nn(NN):
     def getWeights(self):
         """ Prints weights for inputs """
         weights = NN.weights(self)
-        print(weights)
+        return weights
 
 if __name__ == "__main__":
     apollo = dota2nn()
     apollo.loadHero(74)
     print(apollo.getPredict([.1,.1,.0,.1,.0,.2,.0,.02]))
-    apollo.getWeights()
+    print(apollo.getWeights())

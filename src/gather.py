@@ -4,16 +4,17 @@ import json
 
 
         
-def gatherSamples():
+def gatherSamples(max = 1000):
+    """ Returns dictionary of match data up to max, default 1000 """
     list_results = []
     key = "44D2B9F7C72B1931CC601FF4086C9014"
     i = 0
-    while(len(list_results) != 1000):
+    while(len(list_results) != max):
         try:
             results = dota2api.Initialise(key).get_match_history_by_seq_num(start_at_match_seq_num=(2416540502-(100*i)))
             for j in range(len(results["matches"])):
                 if(results["matches"][j]["duration"] > 900 and results["matches"][j]["game_mode"] == 22):
-                    if(len(list_results) == 1000):
+                    if(len(list_results) == max):
                         print("Match threshold acquired, saving file...")
                         break
                     else:
@@ -28,6 +29,7 @@ def gatherSamples():
     file.close()
 
 def parseMatches():
+    """ Parses matches to the correct format for the bpnn, outputs a list """
     with open("matchdata.json", "r") as file:
         workingset = json.load(file)
     file.close()
