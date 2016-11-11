@@ -29,7 +29,7 @@ def dxactivationFunction(y):
     return 1.0 - y**2
 
 class NN:
-    def __init__(self, n_input = 6, n_hidden = 3, n_output = 1):
+    def __init__(self, n_input = 8, n_hidden = 8, n_output = 1):
         self.n_input = n_input + 1
         self.n_hidden = n_hidden
         self.n_output = n_output
@@ -126,9 +126,11 @@ class NN:
         print('Input Weights:')
         for i in range(self.n_input - 1):
             print(self.w_input[i])
+        for i in range(self.n_output - 1):
+            print(self.w_output[i])
 
     # Train the NN, N = learning rate, M = momentum factor
-    def train(self, patterns, iterations=1000, N=0.9, M=0.5):
+    def train(self, patterns, iterations=10000, N=0.2, M=0.2):
         print("Training neural network with samples")
         for i in range(iterations):
             error = 0.0

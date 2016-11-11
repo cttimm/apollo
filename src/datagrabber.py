@@ -44,7 +44,7 @@ if __name__ == "__main__":
     match_list = getMatches()
     for match in match_list:
        game_stats.append(getDetails(match))
-    with open('results.json', 'w+') as file:
+    with open('samples.json', 'w+') as file:
         json.dump(game_stats, file)
     file.close()
         
