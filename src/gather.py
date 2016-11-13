@@ -4,7 +4,7 @@ import json
 
 
         
-def gatherSamples(max = 1000):
+def gatherSamples(max = 10000):
     """ Returns dictionary of match data up to max, default 1000 """
     list_results = []
     key = "44D2B9F7C72B1931CC601FF4086C9014"
@@ -13,7 +13,7 @@ def gatherSamples(max = 1000):
         try:
             results = dota2api.Initialise(key).get_match_history_by_seq_num(start_at_match_seq_num=(2416540502-(100*i)))
             for j in range(len(results["matches"])):
-                if(results["matches"][j]["duration"] > 900 and results["matches"][j]["game_mode"] == 22):
+                if(results["matches"][j]["duration"] > 900 and results["matches"][j]["duration"] < 3600 and results["matches"][j]["game_mode"] == 22):
                     if(len(list_results) == max):
                         print("Match threshold acquired, saving file...")
                         break
@@ -24,21 +24,21 @@ def gatherSamples(max = 1000):
         except:
             pass
 
-    with open("matchdata.json", "w") as file:
+    with open("data/matchdata.json", "w") as file:
         json.dump(list_results, file)
     file.close()
 
 def parseMatches():
     """ Parses matches to the correct format for the bpnn, outputs a list """
-    with open("matchdata.json", "r") as file:
+    with open("data/matchdata.json", "r") as file:
         workingset = json.load(file)
     file.close()
 
-    if (len(workingset) == 1000):
+    if (len(workingset) == 10000):
         save_list = []
         for i in range(114):
             save_list.append([])
-        for i in range(1000):
+        for i in range(10000):
             for j in range(10):
                 current = workingset[i]["players"][j]
                 heroid = current["hero_id"]
@@ -56,10 +56,11 @@ def parseMatches():
                     save_list[heroid].append([detailslist,[1]])
                 else:
                     save_list[heroid].append([detailslist,[0]])
-        with open("sampledata.json", "w") as file:
+        with open("data/sampledata.json", "w") as file:
             json.dump(save_list, file)
     else:
         print("Error with matchdata, incorrect length")
 
 if __name__ == "__main__":
+    gatherSamples()
     parseMatches()
