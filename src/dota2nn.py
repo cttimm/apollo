@@ -21,16 +21,23 @@ class dota2nn(NN):
 
     def getScaledWeights(self):
         """ Prints weights for inputs """
-        input_weights = NN.weights(self)[0]
-        output_weights = NN.weights(self)[1]
-        scaled_weights = [0.0]*8
-        for i in range(len(output_weights):
-            for j in range(len(input_weights)):
-                scaled_weights[j] += (output_weights[i] * input_weights[j][i])
-        print(scaled_weights)
-                
+        inputs = self.weights()[0]
+        hidden = self.weights()[1]
+        output = self.weights()[2]
+        scaled = [0.0]*8
+    
+        for k in range(len(inputs)-1):
+            sum_hidden = 0.0
+            sum_output = 0.0
+            for i in range(len(hidden)):
+                for j in range(len(output)):
+                    sum_hidden = sum_hidden + hidden[i][j]
+                    sum_output = sum_output + output[j][0]
+                scaled[k] = -1 * inputs[k][i] * sum_hidden * sum_output
+        print(scaled)
 
 if __name__ == "__main__":
     test = dota2nn()
-    test.loadHero(1)
+    test.loadHero(11)
+    test.test([[[.3,.3,.1,.9,.5,.1,.1,.009]]])
     test.getScaledWeights()

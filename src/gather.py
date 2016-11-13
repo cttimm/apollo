@@ -4,7 +4,7 @@ import json
 
 
         
-def gatherSamples(max = 10000):
+def grabSamples(max = 1000):
     """ Returns dictionary of match data up to max, default 1000 """
     list_results = []
     key = "44D2B9F7C72B1931CC601FF4086C9014"
@@ -30,15 +30,16 @@ def gatherSamples(max = 10000):
 
 def parseMatches():
     """ Parses matches to the correct format for the bpnn, outputs a list """
+    """ Requires samples to have already been grabbed """
     with open("data/matchdata.json", "r") as file:
         workingset = json.load(file)
     file.close()
 
-    if (len(workingset) == 10000):
+    if (len(workingset) == 1000):
         save_list = []
         for i in range(114):
             save_list.append([])
-        for i in range(10000):
+        for i in range(1000):
             for j in range(10):
                 current = workingset[i]["players"][j]
                 heroid = current["hero_id"]
@@ -62,5 +63,5 @@ def parseMatches():
         print("Error with matchdata, incorrect length")
 
 if __name__ == "__main__":
-    gatherSamples()
+    grabSamples()
     parseMatches()
