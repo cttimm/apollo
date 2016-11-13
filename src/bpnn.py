@@ -130,7 +130,7 @@ class NN:
             print(self.w_output[i])
 
     # Train the NN, N = learning rate, M = momentum factor
-    def train(self, patterns, iterations=10000, N=0.2, M=0.2):
+    def train(self, patterns, iterations=2000, N=0.0025, M=0.0025):
         print("Training neural network with samples")
         for i in range(iterations):
             error = 0.0
