@@ -29,7 +29,7 @@ def dxactivationFunction(y):
     return 1.0 - y**2
 
 class NN:
-    def __init__(self, n_input = 8, n_hidden = 4,  n_hidden2 = 4, n_output = 1):
+    def __init__(self, n_input = 8, n_hidden = 7,  n_hidden2 = 7, n_output = 1):
         self.n_input = n_input + 1
         self.n_hidden = n_hidden
         self.n_hidden2 = n_hidden2
@@ -49,15 +49,15 @@ class NN:
         # Set the weight matrices to random values
         for i in range(self.n_input):
             for j in range(self.n_hidden):
-                self.input_weights[i][j] = rand(0,.5)
+                self.input_weights[i][j] = rand(0,.02)
      
         for j in range(self.n_hidden):
             for k in range(self.n_hidden2):
-                self.hidden_weights[j][k] = rand(-.5,.5)
+                self.hidden_weights[j][k] = rand(-4.3,4.3)
 
         for j in range(self.n_hidden2):
             for k in range(self.n_output):
-                self.output_weights[j][k] = rand(0, 5)   
+                self.output_weights[j][k] = rand(-4.3, 4.3)   
 
         # Momentum; change in weights
         self.c_input = initMatrix(self.n_input, self.n_hidden)
