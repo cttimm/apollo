@@ -13,11 +13,8 @@ class dota2nn(NN):
         """ Loads the existing dataset from a json file, will be indexed with results for individual heros """
 
         patterns = self.data[heroid][:200]
+        print("n = %d" % len(patterns))
         NN.train(self, patterns)
-
-    def getPredict(self, values):
-        """ Takes input list and returns float indicating valuation of win """
-        return NN.test(self, [[values]])
 
     def getScaledWeights(self):
         """ Prints weights for inputs """
@@ -33,11 +30,24 @@ class dota2nn(NN):
                 for j in range(len(output)):
                     sum_hidden = sum_hidden + hidden[i][j]
                     sum_output = sum_output + output[j][0]
-                scaled[k] = -1 * inputs[k][i] * sum_hidden * sum_output
+                scaled[k] = inputs[k][i] * (sum_hidden + sum_output)
         print(scaled)
+
+    def predict(self, values):
+        results = self.test(values)
+        if(results > .5):
+            print("Victory, %.3f" % results)
+        else:
+            print("Defeat, %.3f" % results)
+
 
 if __name__ == "__main__":
     test = dota2nn()
-    test.loadHero(11)
-    test.test([[[.3,.3,.1,.9,.5,.1,.1,.009]]])
-    test.getScaledWeights()
+    print("Training network for hero Mirana")
+    test.loadHero(9)
+    print("Testing input matchid: 2771458676 [L]")
+    test.predict([[[.342,.447,.06,.04,.13,.171,.0,.00033]]])
+    print("Testing input matchid: 2769705846 [W]")
+    test.predict([[[.3,.399,.01,.04,.2,.119,.0,.00638]]])
+    print("Testing input matchid: 2754209826 [W]")
+    test.predict([[[.552,.628,.09,.06,.13,.281,.0,.025]]])

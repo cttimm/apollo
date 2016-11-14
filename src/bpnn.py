@@ -49,13 +49,15 @@ class NN:
         # Set the weight matrices to random values
         for i in range(self.n_input):
             for j in range(self.n_hidden):
-                self.input_weights[i][j] = rand(-0.2, 0.2)
+                self.input_weights[i][j] = rand(0,.5)
+     
         for j in range(self.n_hidden):
             for k in range(self.n_hidden2):
-                self.hidden_weights[j][k] = rand(-2.0, 2.0)
-        for j in range(self.n_hidden):
+                self.hidden_weights[j][k] = rand(-.5,.5)
+
+        for j in range(self.n_hidden2):
             for k in range(self.n_output):
-                self.output_weights[j][k] = rand(-0.75, .75)
+                self.output_weights[j][k] = rand(0, 5)   
 
         # Momentum; change in weights
         self.c_input = initMatrix(self.n_input, self.n_hidden)
@@ -147,15 +149,15 @@ class NN:
     # Test the class with a pattern
     def test(self, patterns):
         for p in patterns:
-            print(self.update(p[0])[0])
+            return self.update(p[0])[0]
 
     # Print the weights
     def weights(self):
         return [self.input_weights, self.hidden_weights, self.output_weights]
 
     # Train the NN, N = learning rate, M = momentum factor
-    def train(self, patterns, iterations=1000, N=0.00025, M=0.00025):
-        print("Training neural network with samples")
+    def train(self, patterns, iterations=2000, N=0.000025, M=0.00025):
+        print("Iterations: %d, N: %f, M: %f" % (iterations, N, M))
         for i in range(iterations):
             error = 0.0
             for p in patterns:

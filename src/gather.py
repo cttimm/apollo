@@ -50,8 +50,8 @@ def parseMatches():
                     current.get("deaths")/100,
                     current.get("assists")/100,
                     current.get("hero_damage")/100000,
-                    current.get("hero_healing")/100000,
-                    current.get("tower_damage")/100000
+                    current.get("hero_healing")/10000,
+                    current.get("tower_damage")/10000
                 ]
                 if (current["player_slot"] < 5) == workingset[i]["radiant_win"]:
                     save_list[heroid].append([detailslist,[1]])
