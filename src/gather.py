@@ -4,7 +4,7 @@ import json
 
 
         
-def grabSamples(max = 1000):
+def samples(max = 1000):
     """ Returns dictionary of match data up to max, default 1000 """
     list_results = []
     key = "44D2B9F7C72B1931CC601FF4086C9014"
@@ -28,7 +28,7 @@ def grabSamples(max = 1000):
         json.dump(list_results, file)
     file.close()
 
-def parseMatches():
+def parse():
     """ Parses matches to the correct format for the bpnn, outputs a list """
     """ Requires samples to have already been grabbed """
     with open("data/matchdata.json", "r") as file:
@@ -62,6 +62,18 @@ def parseMatches():
     else:
         print("Error with matchdata, incorrect length")
 
+def heroes():
+    """ parses ..ref/hereoes.json and indexes heroes by heroid -1 """
+    
+    heroes = [""] * 115
+    with open("../ref/heroes.json","r") as file:
+        heroes_raw = json.load(file)["heroes"]
+    file.close()
+    for hero in heroes_raw:
+        heroes[hero["id"]-1] = hero["localized_name"].strip().lower().replace(" ","").replace("-","")
+    with open("data/heroes.json","w") as file:
+        json.dump(heroes, file)
+    file.close()
+
 if __name__ == "__main__":
-    grabSamples()
-    parseMatches()
+    heroes()

@@ -29,7 +29,7 @@ def dxactivationFunction(y):
     return 1.0 - y**2
 
 class NN:
-    def __init__(self, n_input = 8, n_hidden = 7,  n_hidden2 = 7, n_output = 1):
+    def __init__(self, n_input = 8, n_hidden = 4,  n_hidden2 = 4, n_output = 1):
         self.n_input = n_input + 1
         self.n_hidden = n_hidden
         self.n_hidden2 = n_hidden2
@@ -49,15 +49,15 @@ class NN:
         # Set the weight matrices to random values
         for i in range(self.n_input):
             for j in range(self.n_hidden):
-                self.input_weights[i][j] = rand(0,.02)
+                self.input_weights[i][j] = rand(-(1/n_input),(1/n_input))
      
         for j in range(self.n_hidden):
             for k in range(self.n_hidden2):
-                self.hidden_weights[j][k] = rand(-4.3,4.3)
+                self.hidden_weights[j][k] = rand(-n_input,n_input)/math.sqrt(n_input)
 
         for j in range(self.n_hidden2):
             for k in range(self.n_output):
-                self.output_weights[j][k] = rand(-4.3, 4.3)   
+                self.output_weights[j][k] = rand(-n_hidden, n_hidden)/math.sqrt(n_hidden)  
 
         # Momentum; change in weights
         self.c_input = initMatrix(self.n_input, self.n_hidden)
@@ -71,6 +71,7 @@ class NN:
         # Input activations
         for i in range(self.n_input-1):
             self.a_input[i] = inputs[i]
+            # self.a_input[i] = activationFunction(inputs[i])
 
         # Hidden activations
         for j in range(self.n_hidden):
@@ -156,7 +157,7 @@ class NN:
         return [self.input_weights, self.hidden_weights, self.output_weights]
 
     # Train the NN, N = learning rate, M = momentum factor
-    def train(self, patterns, iterations=2000, N=0.000025, M=0.00025):
+    def train(self, patterns, iterations=2000, N=0.025, M=0.045):
         print("Iterations: %d, N: %f, M: %f" % (iterations, N, M))
         for i in range(iterations):
             error = 0.0
