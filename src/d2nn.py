@@ -9,14 +9,14 @@ class Initialize(NN):
                 self.data = json.load(file)
             file.close()
         except FileNotFoundError:
-            print("data/sampledata.json not found, see gather.py")
+            print("[WARNING] data/sampledata.json not found, see gather.py")
         # Open hero data, indexed by heroid -1, see gather.py
         try:
             with open("data/heroes.json", "r") as file:
                 self.heroes = json.load(file)
             file.close()
-        except: FileNotFoundError:
-            print("data/heroes.json not found, see gather.py")
+        except FileNotFoundError:
+            print("[WARNING] data/heroes.json not found, see gather.py")
 
         # Inheritance
         NN.__init__(self)
@@ -79,4 +79,3 @@ class Initialize(NN):
 
 if __name__ == "__main__":
     d2nn = Initialize()
-    d2nn.set_hero("spirit breaker")
