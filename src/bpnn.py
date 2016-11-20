@@ -1,7 +1,7 @@
 # Based off of bpnn by Neil Schemenauer <nas@arctrix.com>
+# Modifications and second layer added by Charles Timmerman <cttimm4427@ung.edu>
 # Written in Python. See http://www.python.org
 # Placed in the public domain.
-
 
 import math
 import random
@@ -29,7 +29,7 @@ def dxactivationFunction(y):
     return 1.0 - y**2
 
 class NN:
-    def __init__(self, n_input = 8, n_hidden = 4,  n_hidden2 = 4, n_output = 1):
+    def __init__(self, n_input = 8, n_hidden = 7,  n_hidden2 = 7, n_output = 1):
         self.n_input = n_input + 1
         self.n_hidden = n_hidden
         self.n_hidden2 = n_hidden2
@@ -157,7 +157,7 @@ class NN:
         return [self.input_weights, self.hidden_weights, self.output_weights]
 
     # Train the NN, N = learning rate, M = momentum factor
-    def train(self, patterns, iterations=2000, N=0.025, M=0.045):
+    def train(self, patterns, iterations, N, M):
         print("Iterations: %d, N: %f, M: %f" % (iterations, N, M))
         for i in range(iterations):
             error = 0.0
