@@ -1,7 +1,13 @@
+# Interface for two layer bpnn that adds functionality to pull information from Valve's WebAPI on match data
+# Charles Timmerman - Term Project CSCI 3450 -
+# cttimm4427@ung.edu
+
 from bpnn import NN
+import players
 import json
 
-class Initialize(NN):
+
+class start(NN):
     def __init__(self):
         # Open sample data, see gather.py
         try:
@@ -17,7 +23,6 @@ class Initialize(NN):
             file.close()
         except FileNotFoundError:
             print("[WARNING] data/heroes.json not found, see gather.py")
-
         # Inheritance
         NN.__init__(self)
         self.heroid = 1
@@ -44,25 +49,11 @@ class Initialize(NN):
 
     def relative_weights(self):
         ''' Returns a list of weight estimates '''
-        avg = [.4,.4,.05,.02,.1,.1,.01,.01]
-        results = []
-        for i in range(len(avg)):
-            
-            # Needs to be cleaned up
-            results.append([0.0]*2)
-            diff = avg[:]
-            diff[i] -= (avg[i] * .5)
-            results[i][0] = (self.predict(diff) - self.predict(avg))/(avg[i] * .5)
-            diff = avg[:]
-            diff[i] += (avg[i] * .5)
-            results[i][1] = (self.predict(diff) - self.predict(avg))/(avg[i] * .5)
-        return results
-
+        pass
 
     def averages(self):
         ''' Returns the average values for all data '''
-        for i in range(len(self.data)):
-            pass
+        pass
 
     def lastmatch(self, playerid):
         ''' Returns the prediction of a players last match '''

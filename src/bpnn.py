@@ -14,7 +14,7 @@ def rand(min, max):
     return (max-min)*random.random() + min
 
 # Creates a matrix with append
-def initMatrix(I, J, fill=0.0):
+def fill_matrix(I, J, fill=0.0):
     matrix = []
     for i in range(I):
         matrix.append([0.0]*J)
@@ -24,45 +24,40 @@ def initMatrix(I, J, fill=0.0):
 def activationFunction(x):
     return math.tanh(x)
 
-#Dx of Sigmoid activation function
+#Dx of Sigmoid activation function used for calculating error
 def dxactivationFunction(y):
     return 1.0 - y**2
 
 class NN:
-    def __init__(self, n_input = 8, n_hidden = 7,  n_hidden2 = 7, n_output = 1):
+    def __init__(self, n_input = 8, n_layer1 = 7,  n_layer2 = 7, n_output = 1):
         self.n_input = n_input + 1
-        self.n_hidden = n_hidden
-        self.n_hidden2 = n_hidden2
+        self.n_layer1 = n_layer1
+        self.n_layer2 = n_layer2
         self.n_output = n_output
-
         # Activations for nodes
         self.a_input = [1.0] * self.n_input
-        self.a_hidden = [1.0] * self.n_hidden
-        self.a_hidden2 = [1.0] * self.n_hidden2
+        self.a_layer1 = [1.0] * self.n_layer1
+        self.a_layer2 = [1.0] * self.n_layer2
         self.a_output = [1.0] * self.n_output
-
         # Weights
-        self.input_weights = initMatrix(self.n_input, self.n_hidden)
-        self.hidden_weights = initMatrix(self.n_hidden, self.n_hidden2)
-        self.output_weights = initMatrix(self.n_hidden2, self.n_output)
-
+        self.input_weights = fill_matrix(self.n_input, self.n_layer1)
+        self.hidden_weights = fill_matrix(self.n_layer1, self.n_layer2)
+        self.output_weights = fill_matrix(self.n_layer2, self.n_output)
         # Set the weight matrices to random values
         for i in range(self.n_input):
-            for j in range(self.n_hidden):
+            for j in range(self.n_layer1):
                 self.input_weights[i][j] = rand(-(1/n_input),(1/n_input))
-     
-        for j in range(self.n_hidden):
-            for k in range(self.n_hidden2):
+        for j in range(self.n_layer1):
+            for k in range(self.n_layer2):
                 self.hidden_weights[j][k] = rand(-n_input,n_input)/math.sqrt(n_input)
-
-        for j in range(self.n_hidden2):
+        for j in range(self.n_layer2):
             for k in range(self.n_output):
-                self.output_weights[j][k] = rand(-n_hidden, n_hidden)/math.sqrt(n_hidden)  
-
+                self.output_weights[j][k] = rand(-n_layer1, n_layer1)/math.sqrt(n_layer1)  
         # Momentum; change in weights
-        self.c_input = initMatrix(self.n_input, self.n_hidden)
-        self.c_output = initMatrix(self.n_hidden2, self.n_output)
-        self.c_hidden = initMatrix(self.n_hidden, self.n_hidden2)
+        self.c_input = fill_matrix(self.n_input, self.n_layer1)
+        self.c_output = fill_matrix(self.n_layer2, self.n_output)
+        self.c_hidden = fill_matrix(self.n_layer1, self.n_layer2)
+        
     # Activations for input, hidden, output
     def update(self, inputs):
         if len(inputs) != self.n_input - 1:
@@ -74,23 +69,23 @@ class NN:
             # self.a_input[i] = activationFunction(inputs[i])
 
         # Hidden activations
-        for j in range(self.n_hidden):
+        for j in range(self.n_layer1):
             sum = 0.0
             for i in range(self.n_input):
                 sum = sum + self.a_input[i] * self.input_weights[i][j]
-            self.a_hidden[j] = activationFunction(sum)
+            self.a_layer1[j] = activationFunction(sum)
                 
-        for j in range(self.n_hidden2):
+        for j in range(self.n_layer2):
             sum = 0.0
-            for i in range(self.n_hidden):
-                sum = sum + self.a_hidden[i] * self.hidden_weights[i][j]
-            self.a_hidden2[j] = activationFunction(sum)
+            for i in range(self.n_layer1):
+                sum = sum + self.a_layer1[i] * self.hidden_weights[i][j]
+            self.a_layer2[j] = activationFunction(sum)
 
          # Output activations
         for k in range(self.n_output):
             sum = 0.0
-            for j in range(self.n_hidden2):
-                sum = sum + self.a_hidden2[j] * self.output_weights[j][k]
+            for j in range(self.n_layer2):
+                sum = sum + self.a_layer2[j] * self.output_weights[j][k]
             self.a_output[k] = activationFunction(sum) 
         return self.a_output[:]
 
@@ -105,38 +100,38 @@ class NN:
             output_deltas[k] = dxactivationFunction(self.a_output[k]) * error
 
         # Calculate Second Layer Error
-        hidden2_deltas = [0.0] * self.n_hidden2
-        for j in range(self.n_hidden2):
+        hidden2_deltas = [0.0] * self.n_layer2
+        for j in range(self.n_layer2):
             error = 0.0
             for k in range(self.n_output):
                 error = error + output_deltas[k] * self.output_weights[j][k]
-            hidden2_deltas[j] = dxactivationFunction(self.a_hidden2[j]) * error
+            hidden2_deltas[j] = dxactivationFunction(self.a_layer2[j]) * error
 
         # Calculate First Layer Error
-        hidden_deltas = [0.0] * self.n_hidden
-        for j in range(self.n_hidden):
+        hidden_deltas = [0.0] * self.n_layer1
+        for j in range(self.n_layer1):
             error = 0.0
-            for k in range(self.n_hidden2):
+            for k in range(self.n_layer2):
                 error = error + hidden2_deltas[k] * self.hidden_weights[j][k]
-            hidden_deltas[j] = dxactivationFunction(self.a_hidden[j]) * error
+            hidden_deltas[j] = dxactivationFunction(self.a_layer1[j]) * error
 
         # Update Output Weights
-        for j in range(self.n_hidden2):
+        for j in range(self.n_layer2):
             for k in range(self.n_output):
-                delta = output_deltas[k] * self.a_hidden2[j]
+                delta = output_deltas[k] * self.a_layer2[j]
                 self.output_weights[j][k] = self.output_weights[j][k] + (N * delta) + (M * self.c_output[j][k])
                 self.c_output[j][k] = delta
         
         # Update Hidden Weights
-        for j in range(self.n_hidden):
-            for k in range(self.n_hidden2):
-                delta = hidden2_deltas[k] * self.a_hidden[j]
+        for j in range(self.n_layer1):
+            for k in range(self.n_layer2):
+                delta = hidden2_deltas[k] * self.a_layer1[j]
                 self.hidden_weights[j][k] = self.hidden_weights[j][k] + (N * delta) + (M * self.c_hidden[j][k])
                 self.c_hidden[j][k] = delta
 
         # Update Input Weights
         for i in range(self.n_input):
-            for j in range(self.n_hidden):
+            for j in range(self.n_layer1):
                 delta = hidden_deltas[j] * self.a_input[i]
                 self.input_weights[i][j] = self.input_weights[i][j] + (N * delta) + (M * self.c_input[i][j])
                 self.c_input[i][j] = delta

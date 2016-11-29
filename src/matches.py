@@ -1,13 +1,15 @@
+# Gathers match samples from Valve's web API
+# Charles Timmerman - Term Project - CSCI 3450
+# cttimm4427@ung.edu
 
 import dota2api
 import json
-
-
         
 def samples(max = 1000):
     """ Returns dictionary of match data up to max, default 1000 """
     list_results = []
-    key = "44D2B9F7C72B1931CC601FF4086C9014"
+    with open("data/key", "r") as file: # Requires web api key to be saved in a file named "key" with quotes around the key 
+        key = json.load(file)
     i = 0
     while(len(list_results) != max):
         try:
@@ -76,4 +78,4 @@ def heroes():
     file.close()
 
 if __name__ == "__main__":
-    heroes()
+    pass
