@@ -9,23 +9,19 @@ import json
 
 class start(NN):
     def __init__(self):
+        NN.__init__(self)
+        self.heroid = 1
+
         # Open sample data, see gather.py
         try:
             with open("data/sampledata.json","r") as file:
                 self.data = json.load(file)
-            file.close()
-        except FileNotFoundError:
-            print("[WARNING] data/sampledata.json not found, see gather.py")
-        # Open hero data, indexed by heroid -1, see gather.py
-        try:
             with open("data/heroes.json", "r") as file:
                 self.heroes = json.load(file)
             file.close()
-        except FileNotFoundError:
-            print("[WARNING] data/heroes.json not found, see gather.py")
-        # Inheritance
-        NN.__init__(self)
-        self.heroid = 1
+        except FileNotFoundError as e:
+            print("[WARNING] %s not found." % e.filename)
+
 
     def load(self, N=.0025, M=.0025, iterations=5000):
         ''' Trains the neural network with match statistics for the current heroid '''
