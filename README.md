@@ -7,7 +7,7 @@
 #### Sample outputs:
 [Pudge](https://github.com/cttimm/d2nn/blob/master/src/sample_pudge)
 
-[PHantom Assassin](https://github.com/cttimm/d2nn/blob/master/src/sample_pa)
+[Phantom Assassin](https://github.com/cttimm/d2nn/blob/master/src/sample_pa)
 
 [Alchemist](https://github.com/cttimm/d2nn/blob/master/src/sample_alch)
 
