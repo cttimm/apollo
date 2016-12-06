@@ -5,15 +5,15 @@
 import dota2api
 import json
         
-def samples(max = 1000):
+def samples(max = 10000):
     """ Returns dictionary of match data up to max, default 1000 """
     list_results = []
-    with open("data/key", "r") as file: # Requires web api key to be saved in a file named "key" with quotes around the key 
+    with open("data/key.json", "r") as file: # Requires web api key to be saved in a file named "key" with quotes around the key 
         key = json.load(file)
     i = 0
     while(len(list_results) != max):
         try:
-            results = dota2api.Initialise(key).get_match_history_by_seq_num(start_at_match_seq_num=(2416540502-(100*i)))
+            results = dota2api.Initialise(key).get_match_history_by_seq_num(start_at_match_seq_num=(2416543502-(100*i)))
             for j in range(len(results["matches"])):
                 if(results["matches"][j]["duration"] > 900 and results["matches"][j]["duration"] < 3600 and results["matches"][j]["game_mode"] == 22):
                     if(len(list_results) == max):
@@ -37,7 +37,7 @@ def parse():
         workingset = json.load(file)
     file.close()
 
-    if (len(workingset) == 1000):
+    if (len(workingset) == 10000):
         save_list = []
         for i in range(114):
             save_list.append([])
@@ -52,8 +52,7 @@ def parse():
                     current.get("deaths")/100,
                     current.get("assists")/100,
                     current.get("hero_damage")/100000,
-                    current.get("hero_healing")/10000,
-                    current.get("tower_damage")/10000
+                    current.get("hero_healing")/10000
                 ]
                 if (current["player_slot"] < 5) == workingset[i]["radiant_win"]:
                     save_list[heroid].append([detailslist,[1]])
@@ -78,4 +77,5 @@ def heroes():
     file.close()
 
 if __name__ == "__main__":
-    pass
+    
+    parse()

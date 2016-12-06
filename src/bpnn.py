@@ -6,7 +6,6 @@
 import math
 import random
 import string
-import json
 
 random.seed(0)
 
@@ -29,7 +28,7 @@ def dxactivationFunction(y):
     return 1.0 - y**2
 
 class NN:
-    def __init__(self, n_input = 8, n_layer1 = 7,  n_layer2 = 7, n_output = 1):
+    def __init__(self, n_input = 7, n_layer1 = 7,  n_layer2 = 7, n_output = 1):
         self.n_input = n_input + 1
         self.n_layer1 = n_layer1
         self.n_layer2 = n_layer2
@@ -39,7 +38,7 @@ class NN:
         self.a_layer1 = [1.0] * self.n_layer1
         self.a_layer2 = [1.0] * self.n_layer2
         self.a_output = [1.0] * self.n_output
-        # Weights
+        # Initialize weight matrix
         self.input_weights = fill_matrix(self.n_input, self.n_layer1)
         self.hidden_weights = fill_matrix(self.n_layer1, self.n_layer2)
         self.output_weights = fill_matrix(self.n_layer2, self.n_output)
@@ -66,22 +65,22 @@ class NN:
         # Input activations
         for i in range(self.n_input-1):
             self.a_input[i] = inputs[i]
-            # self.a_input[i] = activationFunction(inputs[i])
 
-        # Hidden activations
+        # First hidden layer activations
         for j in range(self.n_layer1):
             sum = 0.0
             for i in range(self.n_input):
                 sum = sum + self.a_input[i] * self.input_weights[i][j]
             self.a_layer1[j] = activationFunction(sum)
-                
+
+        # Second hidden layer acrtivations    
         for j in range(self.n_layer2):
             sum = 0.0
             for i in range(self.n_layer1):
                 sum = sum + self.a_layer1[i] * self.hidden_weights[i][j]
             self.a_layer2[j] = activationFunction(sum)
 
-         # Output activations
+        # Output activations
         for k in range(self.n_output):
             sum = 0.0
             for j in range(self.n_layer2):
@@ -147,10 +146,6 @@ class NN:
         for p in patterns:
             return self.update(p[0])[0]
 
-    # Print the weights
-    def weights(self):
-        return [self.input_weights, self.hidden_weights, self.output_weights]
-
     # Train the NN, N = learning rate, M = momentum factor
     def train(self, patterns, iterations, N, M):
         print("Iterations: %d, N: %f, M: %f" % (iterations, N, M))
@@ -162,5 +157,5 @@ class NN:
                 self.update(inputs)
                 error = error + self.backProp(targets, N, M)
             if i % 200 == 0:
-                print("Error %-.5f" % error)
+                print("[%d]\tError %-.5f" % (i, error))
     

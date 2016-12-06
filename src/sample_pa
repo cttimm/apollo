@@ -1,0 +1,34 @@
+Updated hero to phantom assassin [44]
+n = 300
+Iterations: 5000, N: 0.030000, M: 0.007000
+[0]	Error 54.91845
+[200]	Error 13.57502
+[400]	Error 11.63994
+[600]	Error 10.25333
+[800]	Error 9.32069
+[1000]	Error 8.95524
+[1200]	Error 8.93207
+[1400]	Error 8.69988
+[1600]	Error 8.37206
+[1800]	Error 7.84409
+[2000]	Error 7.27245
+[2200]	Error 6.76686
+[2400]	Error 6.04088
+[2600]	Error 4.65109
+[2800]	Error 4.08654
+[3000]	Error 3.82387
+[3200]	Error 3.74785
+[3400]	Error 3.65331
+[3600]	Error 3.45781
+[3800]	Error 3.40943
+[4000]	Error 3.41984
+[4200]	Error 3.37966
+[4400]	Error 3.34083
+[4600]	Error 3.25825
+[4800]	Error 3.15159
+Prediction for match: https://www.dotabuff.com/matches/2825601582
+0.9995741351862477
+Prediction for match: https://www.dotabuff.com/matches/2824114173
+-0.003018181340461233
+Rate of change per statistic:
+[10.777856875835974, 8.026376140509656, 27.65054499255308, 16.355673577971928, 32.0575120825381, 0.7049641272227279, 2.945771511467328]
