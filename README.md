@@ -11,7 +11,8 @@
 
 [Alchemist](https://github.com/cttimm/d2nn/blob/master/src/sample_alch)
 
---- 
+> The rate of change is an attempt to quantify the activation weights of the nodes by measuring the output after a marginal change to each individual statistic. 
+
 ##### References & Libraries
 * [dotabuff](https://www.dotabuff.com/) - In depth match analysis and statistics
 * [dota2api](https://dota2api.readthedocs.io/en/latest/) - A python library for handling requests from Valve's Web API
