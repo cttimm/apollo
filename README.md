@@ -10,3 +10,11 @@
 [Mirana](https://github.com/cttimm/d2nn/blob/master/src/sample_pa)
 
 [Alchemist](https://github.com/cttimm/d2nn/blob/master/src/sample_alch)
+
+--- 
+##### References & Libraries
+* [dotabuff](https://www.dotabuff.com/) - In depth match analysis and statistics
+* [dota2api](https://dota2api.readthedocs.io/en/latest/) - A python library for handling requests from Valve's Web API
+* [bpnn](https://gist.github.com/yusugomori/2501438) - Back-propagate neural network example in python
+
+
