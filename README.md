@@ -16,13 +16,13 @@ The rate of change is an attempt to quantify the activation weights of the nodes
 
     def relative_weights(self, h = .25):
         # Iterate through stats in averages
-        #  (f(x+h) - f(x)) / h 
         base = self.averages()
         temp = [0.0] * 7
         results = [0.0] * 7
         for i in range(len(base)):
             temp = base[:]
-            temp[i] = base[i] + (base[i] * h)   
+            temp[i] = base[i] + (base[i] * h)
+            #  (f(x+h) - f(x)) / h 
             results[i] = (self.predict(temp) - self.predict(base)) / (base[i] * h)
         print(results)
 ```
