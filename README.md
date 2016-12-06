@@ -5,8 +5,8 @@
 
 [Presentation](https://prezi.com/s9_rpnywxfb1/present/?auth_key=4v968uh&follow=o8tgwlhu_7dy&kw=present-s9_rpnywxfb1&rc=ref-158339460)
 #### Sample outputs:
-[Pudge](https://www.github.com/cttimm/)
+[Pudge](https://github.com/cttimm/d2nn/blob/master/src/sample_pudge)
 
-[Mirana](https://www.github.com/cttimm)
+[Mirana](https://github.com/cttimm/d2nn/blob/master/src/sample_pa)
 
-[Alchemist](https://www.github.com/cttimm/)
+[Alchemist](https://github.com/cttimm/d2nn/blob/master/src/sample_alch)
