@@ -39,6 +39,6 @@ The rate of change is an attempt to quantify the activation weights of the nodes
 * [dotabuff](https://www.dotabuff.com/) - In depth match analysis and statistics
 * [dota2api](https://dota2api.readthedocs.io/en/latest/) - A python library for handling requests from Valve's Web API
 * [bpnn](https://gist.github.com/yusugomori/2501438) - Back-propagate neural network example in python
-* [Steam WebAPI](https://developer.valvesoftware.com/wiki/Steam_Web_API)
+* [Steam WebAPI](https://developer.valvesoftware.com/wiki/Steam_Web_API) - Providing methods to get the data for this project
 
 
