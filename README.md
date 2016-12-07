@@ -2,6 +2,10 @@
 ### Term Project - CSCI 3450 - cttimm4427@ung.edu
 #### Anaylsis of Dota 2 match statistics using a back-propagating neural network
 ---
+Requires dota2api library
+```
+pip install dota2api
+```
 
 [Presentation](https://prezi.com/s9_rpnywxfb1/present/?auth_key=4v968uh&follow=o8tgwlhu_7dy&kw=present-s9_rpnywxfb1&rc=ref-158339460)
 #### Sample outputs:
