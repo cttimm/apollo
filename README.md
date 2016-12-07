@@ -6,6 +6,7 @@ Requires dota2api library
 ```
 pip install dota2api
 ```
+---
 
 [Presentation](https://prezi.com/s9_rpnywxfb1/present/?auth_key=4v968uh&follow=o8tgwlhu_7dy&kw=present-s9_rpnywxfb1&rc=ref-158339460)
 #### Sample outputs:
