@@ -72,7 +72,7 @@ Rate of change per statistic:
 [4.509975583053128, -0.2146852718512037, 0.008550522019067992, -0.018841539009557356, 0.07093585133377683, -0.00747917806470218, -7.143313232355583e-05]
 
 ```
-In this case there are two matches used as examples. [Match 1](https://www.dotabuff.com/matches/2391623428), [Match 2](https://www.dotabuff.com/matches/2488562753). The player in question is named 'nuII' and the hero being played is alchemist. The interesting part is the weight calculation. It can be seen that alchemist's performance is heavily defined by only one statistic: GPM, which makes sense for that hero given his skillset (converting monsters into gold). Compared to a more aggressive hero, like Phantom Assassin (taken from the sample_pa output):
+In this case there are two matches used as examples. [Match 1](https://www.dotabuff.com/matches/2391623428), [Match 2](https://www.dotabuff.com/matches/2488562753). The player in question is named 'nuII' and the hero being played is [Alchemist](http://www.dota2.com/hero/Alchemist/). The interesting part is the weight calculation. It can be seen that alchemist's performance is heavily defined by only one statistic: GPM, which makes sense for that hero given his skillset (converting monsters into gold). Compared to a more aggressive hero, like [Phantom Assassin](http://www.dota2.com/hero/Phantom_Assassin/) (taken from the sample_pa output):
 ```
 Rate of change per statistic:
 [10.777856875835974, 8.026376140509656, 27.65054499255308, 16.355673577971928, 32.0575120825381, 0.7049641272227279, 2.945771511467328]
