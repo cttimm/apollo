@@ -70,7 +70,7 @@ Rate of change per statistic:
 [4.509975583053128, -0.2146852718512037, 0.008550522019067992, -0.018841539009557356, 0.07093585133377683, -0.00747917806470218, -7.143313232355583e-05]
 
 ```
-In this case there are two matches used as examples. [Match 1](https://www.dotabuff.com/matches/2391623428), [Match 2](https://www.dotabuff.com/matches/2488562753). The player in question is named 'nuII' and the hero being played is alchemist. The weight calculations are in the format [GPM, XPM, Kills, Deaths, Assists, Damage, Healing]
+In this case there are two matches used as examples. [Match 1](https://www.dotabuff.com/matches/2391623428), [Match 2](https://www.dotabuff.com/matches/2488562753). The player in question is named 'nuII' and the hero being played is alchemist. The weight calculations are in the format ```[GPM, XPM, Kills, Deaths, Assists, Damage, Healing]```
 
 ##### References & Libraries
 * [dotabuff](https://www.dotabuff.com/) - In depth match analysis and statistics
