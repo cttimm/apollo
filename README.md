@@ -19,6 +19,26 @@ Additionally, a valve api key is required. [https://developer.valvesoftware.com/
 
 [Alchemist](https://github.com/cttimm/d2nn/blob/master/src/sample_alch)
 
+The interface uses a two layer neural network initialized by calling the method NN:
+```python
+class NN:
+    def __init__(self, n_input = 7, n_layer1 = 7,  n_layer2 = 7, n_output = 1):
+        self.n_input = n_input + 1
+        self.n_layer1 = n_layer1
+        self.n_layer2 = n_layer2
+        self.n_output = n_output
+        # Activations for nodes
+        self.a_input = [1.0] * self.n_input
+        self.a_layer1 = [1.0] * self.n_layer1
+        self.a_layer2 = [1.0] * self.n_layer2
+        self.a_output = [1.0] * self.n_output
+        # Initialize weight matrix
+        self.input_weights = fill_matrix(self.n_input, self.n_layer1)
+        self.hidden_weights = fill_matrix(self.n_layer1, self.n_layer2)
+self.output_weights = fill_matrix(self.n_layer2, self.n_output)
+```
+
+
 The rate of change is an attempt to quantify the activation weights of the nodes by measuring the output after a marginal change to each individual statistic. 
 ```Python
 
