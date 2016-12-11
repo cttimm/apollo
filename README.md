@@ -35,7 +35,7 @@ class NN:
         # Initialize weight matrix
         self.input_weights = fill_matrix(self.n_input, self.n_layer1)
         self.hidden_weights = fill_matrix(self.n_layer1, self.n_layer2)
-self.output_weights = fill_matrix(self.n_layer2, self.n_output)
+        self.output_weights = fill_matrix(self.n_layer2, self.n_output)
 ```
 
 
