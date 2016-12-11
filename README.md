@@ -72,7 +72,12 @@ Rate of change per statistic:
 [4.509975583053128, -0.2146852718512037, 0.008550522019067992, -0.018841539009557356, 0.07093585133377683, -0.00747917806470218, -7.143313232355583e-05]
 
 ```
-In this case there are two matches used as examples. [Match 1](https://www.dotabuff.com/matches/2391623428), [Match 2](https://www.dotabuff.com/matches/2488562753). The player in question is named 'nuII' and the hero being played is alchemist. The interesting part is the weight calculation. It can be seen that alchemist's performance is heavily defined by only one statistic: GPM, which makes sense for that hero given his skillset (converting monsters into gold).
+In this case there are two matches used as examples. [Match 1](https://www.dotabuff.com/matches/2391623428), [Match 2](https://www.dotabuff.com/matches/2488562753). The player in question is named 'nuII' and the hero being played is alchemist. The interesting part is the weight calculation. It can be seen that alchemist's performance is heavily defined by only one statistic: GPM, which makes sense for that hero given his skillset (converting monsters into gold). Compared to a more aggressive hero, like Phantom Assassin (taken from the sample_pa output):
+```
+Rate of change per statistic:
+[10.777856875835974, 8.026376140509656, 27.65054499255308, 16.355673577971928, 32.0575120825381, 0.7049641272227279, 2.945771511467328]
+```
+PA's performance is more defined by the amount of kills and assists she has, and actually has an increase in the prediction of victory if she has more deaths when everything else remains average, indicating that her success is largely defined by how involved in the game she is.
 
 ##### References & Libraries
 * [dotabuff](https://www.dotabuff.com/) - In depth match analysis and statistics
